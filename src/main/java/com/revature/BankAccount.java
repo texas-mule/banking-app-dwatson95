@@ -1,38 +1,55 @@
 package com.revature;
 
-public abstract class BankAccount implements Withdraw, Deposit {
+import java.io.FileWriter;
+
+public abstract class BankAccount implements Withdraw, Deposit, Apply {
 	
 	public String accnName;
 	public String accnPswd;
 	public double balance;
 	public String firstN;
 	public String lastN;
+	public boolean approved = false;
 	
 	public String mainDic[];
 	public String userDic[];
 	public String empDic[];
 	
-	public BankAccount(String accnName, String accnPswd, double b){
+	
+	
+	public BankAccount(String accnName, String accnPswd, double balance){
 		super();
-	}
-	
-	public void withdraw(double input) {
-		if(input > balance) {
-			System.out.println("This input exceeds current funds.");
-			System.out.println("Your current balance is" + balance + ".");
-			System.out.println("Please enter another value or choose a different option.");
-		}
-		else if(input < 0) {
-			System.out.println("This input exceeds current bounds of logic, please enter another value "
-					+ "or choose a different option.");
-		}
-		else {
-			System.out.println("Your input of " + input + " has been deposited.");
+		try (FileWriter fw = new FileWriter("output.txt", true)){
+			fw.append("Hello World");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
-	public void deposit(double input) {
-		
+	
+	public String getAccnName() {
+		return accnName;
+	}
+	public void setAccnName(String accnName) {
+		this.accnName = accnName;
+	}
+	public String getAccnPswd() {
+		return accnPswd;
+	}
+	public void setAccnPswd(String accnPswd) {
+		this.accnPswd = accnPswd;
+	}
+	public String getFirstN() {
+		return firstN;
+	}
+	public void setFirstN(String firstN) {
+		this.firstN = firstN;
+	}
+	public String getLastN() {
+		return lastN;
+	}
+	public void setLastN(String lastN) {
+		this.lastN = lastN;
 	}
 		
 	

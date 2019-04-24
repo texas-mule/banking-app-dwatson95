@@ -1,5 +1,7 @@
 package com.revature;
 
+import java.util.Objects;
+
 public class UserAccount extends BankAccount {
 
 	public UserAccount(String accnName, String accnPswd, double balance) {
@@ -20,6 +22,10 @@ public class UserAccount extends BankAccount {
 	public void apply() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public boolean createUserName(String username) {
+		return false;
 	}
 
 	

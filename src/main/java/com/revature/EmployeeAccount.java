@@ -1,6 +1,8 @@
 package com.revature;
 
-public class EmployeeAccount extends UserAccount {
+import java.util.Scanner;
+
+public class EmployeeAccount extends BankAccount {
 
 	
 	public EmployeeAccount(String accnName, String accnPswd, double balance) {
@@ -8,6 +10,8 @@ public class EmployeeAccount extends UserAccount {
 		this.accnName = accnName;
 		this.accnPswd = accnPswd;
 	}
+	
+	
 	
 
 }

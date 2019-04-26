@@ -2,6 +2,6 @@ package com.revature;
 
 public interface ViewMenu {
 
-	void viewMenu();
+	void viewMenu(int indexNum);
 
 }

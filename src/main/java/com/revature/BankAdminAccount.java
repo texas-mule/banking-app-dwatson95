@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class BankAdminAccount extends BankAccount{
 
-	public BankAdminAccount(String accnName, String accnPswd, double balance) {
-		super(accnName, accnPswd, balance);
-		// TODO Auto-generated constructor stub
+	public BankAdminAccount() {
+		super();
+		this.userID = 2;
 	}
 	
 	public void withdraw(double input) {
@@ -27,9 +27,9 @@ public class BankAdminAccount extends BankAccount{
 			}
 		}
 		
-		int index = bankDic.indexOf(username);
+		int index = BankAccounts.bankDic.indexOf(username);
 		 
-		double bal = bankDic.get(index).balance;
+		double bal = BankAccounts.bankDic.get(index).balance;
 		
 		System.out.println("The customer whose account you entered has $" + bal + ".");
 
@@ -57,6 +57,55 @@ public class BankAdminAccount extends BankAccount{
 			System.out.println("Your input of " + input + " has been deposited.");
 			System.out.println("Your current balance is now $" + balance + ".");
 		}
+		
+	}
+
+	@Override
+	public void withdraw() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void apply() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean createUserName(String username) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void signIn(String username, String password) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewMenu() {
+		Scanner s = new Scanner(System.in);
+		int choice;
+		if (approved) {
+			System.out.println("Welcome back BankAdmin!");
+		} else {
+			System.out.println("Sorry for the inconveince, it seems your account isn't approved yet.");
+			s.close(); 
+			return;
+		}
+		do {
+		System.out.println("Please choose from one of the options");
+		System.out.println("1 - Check current balance.");
+		System.out.println("2 - Withdraw");
+		System.out.println("3 - Deposit");
+		System.out.println("4 - Create savings account");
+		System.out.println("5 - Create joint account");
+		System.out.println("6 - Log out");
+		choice = s.nextInt();
+		} while (choice != 6);
+		s.close(); 
 		
 	}
 

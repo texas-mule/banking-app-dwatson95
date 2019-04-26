@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 public class Bank {
 	
+	static BankAccount person;
+	
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Welcome to RV Bank.");
 		homePage();
 		
-		//String o = s.next();
-		
+		//maybe while loop to make sure they really want to leave
 	}
 	
 	public static void homePage() {
@@ -20,18 +21,31 @@ public class Bank {
 		do {
 			if (i > 0)
 				System.out.println("That option is invalid.");
+			
 			System.out.println("Please select from the options below to continue.");
 			System.out.println("1 - Customer Login");
 			System.out.println("2 - Employee Login");
 			System.out.println("3 - Bank Admin Login");
 			System.out.println("4 - Sign-Up");
-			//System.out.println("5 - Leave");
+			System.out.println("5 - Leave");
 			
 			option = s.nextInt();
+			
+			if (i == 1)
+				option1();
+			else if (i == 2)
+				option2();
+			else if (i == 3)
+				option3();
+			else if (i == 4)
+				option4();
+			
+			if (i != 1 || i != 2 || i != 3 || i != 4 || i != 5)
+				System.out.println("Please choose one of the given options.");
 			i++;
-		} while (option > 0 && option < 5);
+		} while (option != 5);
 		
-		
+		s.close();
 	}
 	
 	public static void option1() {
@@ -80,38 +94,29 @@ public class Bank {
 		// loop in case the incorrect option is chosen
 		System.out.println("Welcome to the login page.");
 		do {
-			if (i > 0)
-				System.out.println("That option is invalid.");
-			
 			System.out.println("Please select from the options below to continue.");
 			System.out.println("1 - Login");
 			System.out.println("2 - Exit to Home");
 	
 			option = s.nextInt();
-			i++;
-		} while (option > 0 && option < 3);
 			
-			// loop of some sort to make sure the username is correct
-			System.out.println("Please enter your account username.");
-			
-				String username = s.next();
-				// call method to check if username exist
-				
-				// if it correct continue to password
-				System.out.println("Thank you.");
-				
-				// else ask for username again
-				System.out.println("Please re-enter your account username.");
-			
-			System.out.println("Please enter your account password.");
-			// loop of some sort to make sure the password is correct
-				String password = s.nextLine();
-				
-				// if it is correct continue to login screen
-				System.out.println("Thank you.");
-						
-				// else ask for password again
-				System.out.println("Please re-enter your account password.");
+			if (option != 1 || option != 2)
+				System.out.println("That option is invalid.");
+			else if (option == 1)
+				i = 1;
+			else if (option == 2)
+				return;
+
+		} while (i != 1);
+					
+		System.out.println("Please enter your account username.");
+		String username = s.next();
+	
+		System.out.println("Please enter your account password.");
+		String password = s.nextLine();
+		System.out.println("Thank you.");
+		
+		person.signIn(username, password);
 	}
 	
 	public static void loginEA(int type) {
@@ -150,20 +155,16 @@ public class Bank {
 	}
 
 	public static void custSU(int type) {
-		Scanner s = new Scanner(System.in);
 		
-		BankAccount newCustomer = new CustomerAccount(null, null, type);
+		BankAccount newCustomer = new CustomerAccount();
 		
 		System.out.println("Welcome new potential customer!");
 		System.out.println("Before you become one of our clients there's first a few"
 				+ " things that need to be done");
-		System.out.println("Please enter your First Name!");
-		String fName = s.nextLine();
-		newCustomer.setFirstN(fName);
-		System.out.println("Please enter your Last Name!");
-		String lName = s.nextLine();
-		newCustomer.setFirstN(lName);
 		
+		newCustomer.apply();
+		
+		BankAccounts.bankDic.add(newCustomer);
 		
 		System.out.println("Thank you for your time and patients an agent will review your case.");
 		// end and goes to front
@@ -176,5 +177,6 @@ public class Bank {
 		
 	}
 
+	
 	
 }

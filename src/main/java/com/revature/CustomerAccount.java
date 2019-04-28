@@ -9,7 +9,6 @@ public class CustomerAccount extends BankAccount {
 		this.userID = 0;
 	}
 	
-	//add joint
 	public void withdraw(int indexNum) {
 		double input;
 		Scanner s = new Scanner(System.in);
@@ -25,11 +24,13 @@ public class CustomerAccount extends BankAccount {
 			System.out.println("2 - Withdraw from Savings Account");
 			System.out.println("3 - Withdraw from Joint Account");
 			System.out.println("4 - Logout");
-			
 			option = s.nextInt();
+			System.out.println("");
+			
 			if (option == 1) {
 				System.out.println("Please enter the amount you wish to withdraw.");
 				input = s.nextDouble();
+				System.out.println("");
 				
 				curentBalance = BankAccounts.bankDic.get(indexNum).getBalance();
 				int exit = 0;
@@ -39,15 +40,18 @@ public class CustomerAccount extends BankAccount {
 						curentBalance = curentBalance - input;
 						BankAccounts.bankDic.get(indexNum).setBalance(curentBalance);
 						System.out.println("Your current balance is now $" + curentBalance + ".");
+						System.out.println("");
 					}
 					else if(input > curentBalance) {
 						System.out.println("This input exceeds current funds.");
 						System.out.println("Your current balance is" + balance + ".");
 						System.out.println("Please enter another value or choose a different option.");
+						System.out.println("");
 					}
 					else {
 						System.out.println("This input of " + input + " exceeds current bounds of logic, "
 								+ "please enter another value or choose a different option.");
+						System.out.println("");
 					}
 				} while(exit == 0);
 				
@@ -57,17 +61,22 @@ public class CustomerAccount extends BankAccount {
 				System.out.println(BankAccounts.bankDic.get(indexNum).getSavingsAcc());
 				System.out.println("Please enter the savings account you would like to withdraw from.");
 				keyLookUp = s.nextLine();
+				System.out.println("");
+				
 				while(!contains) {
 					contains = BankAccounts.bankDic.get(indexNum).savingsAcc.containsKey(keyLookUp);
 					if (!contains) {
 						System.out.println("Sorry that savings account does not exist.");
 						System.out.println("Please enter another name.");
 						keyLookUp = s.nextLine();
+						System.out.println("");
 						attempts++;
 						if (attempts > 3) {
 							System.out.println("Sorry for the inconvience, but you've reached your"
 									+ " limit on account access atempts.");
 							System.out.println("Please try again later.");
+							System.out.println("");
+							s.close();
 							return;
 						}
 					}
@@ -78,6 +87,7 @@ public class CustomerAccount extends BankAccount {
 				do {
 					System.out.println("Please enter you withdraw amount.");
 					input = s.nextDouble();
+					System.out.println("");
 					
 					if(input < curentBalance && input >= 0) {
 						System.out.println("Your input of " + input + " has been withdrawn.");
@@ -85,14 +95,17 @@ public class CustomerAccount extends BankAccount {
 						BankAccounts.bankDic.get(indexNum).setBalance(curentBalance);
 						System.out.println("Your current balance is now $" + curentBalance + ".");
 						BankAccounts.bankDic.get(indexNum).savingsAcc.put(keyLookUp, curentBalance);
+						System.out.println("");
 						exit = 1;
 					} else if(input > curentBalance) {
 						System.out.println("This input exceeds current funds.");
 						System.out.println("Your current balance is" + curentBalance + ".");
 						System.out.println("Please enter another value or choose a different option.");
+						System.out.println("");
 					} else {
 						System.out.println("This input of " + input + " exceeds current bounds of logic, "
 								+ "please enter another value or choose a different option.");
+						System.out.println("");
 					}
 					
 				} while (exit == 0);
@@ -103,17 +116,22 @@ public class CustomerAccount extends BankAccount {
 				System.out.println(BankAccounts.bankDic.get(indexNum).getJointAccs());
 				System.out.println("Please enter the joint account you would like to withdraw from.");
 				keyLookUp = s.nextLine();
+				System.out.println("");
+				
 				while(!contains) {
 					contains = BankAccounts.usersJointAcc.containsKey(keyLookUp);
 					if (!contains) {
 						System.out.println("Sorry that savings account does not exist.");
 						System.out.println("Please enter another name.");
 						keyLookUp = s.nextLine();
+						System.out.println("");
 						attempts++;
 						if (attempts > 3) {
 							System.out.println("Sorry for the inconvience, but you've reached your"
 									+ " limit on account access attempts.");
 							System.out.println("Please try again later.");
+							System.out.println("");
+							s.close();
 							return;
 						}
 					}
@@ -124,31 +142,36 @@ public class CustomerAccount extends BankAccount {
 				do {
 					System.out.println("Please enter you withdraw amount.");
 					input = s.nextDouble();
+					System.out.println("");
 					
 					if(input < curentBalance && input >= 0) {
 						System.out.println("Your input of " + input + " has been withdrawn.");
 						curentBalance = curentBalance - input;
 						System.out.println("Your current balance is now $" + curentBalance + ".");
 						BankAccounts.usersJointAcc.put(keyLookUp, curentBalance);
+						System.out.println("");
 						exit = 1;
 					} else if(input > curentBalance) {
 						System.out.println("This input exceeds current funds.");
 						System.out.println("Your current balance is" + curentBalance + ".");
 						System.out.println("Please enter another value or choose a different option.");
+						System.out.println("");
 					} else {
 						System.out.println("This input of " + input + " exceeds current bounds of logic, "
 								+ "please enter another value or choose a different option.");
+						System.out.println("");
 					}
 				} while (exit == 0);
 				
 			} else {
 				System.out.println("That value is invalid please input one of the given options.");
+				System.out.println("");
 			}
 			
 		} while (option != 4);
 		s.close();
 	}
-	//add joint
+	
 	public void deposit(int indexNum) {
 		Scanner s = new Scanner(System.in);
 		double curentBalance;
@@ -157,6 +180,7 @@ public class CustomerAccount extends BankAccount {
 		int option;
 		String keyLookUp;
 		boolean contains = false;
+		
 		do {
 		
 			System.out.println("Please enter the option which you would like to make.");
@@ -164,25 +188,29 @@ public class CustomerAccount extends BankAccount {
 			System.out.println("2 - Deposit to Savings Account");
 			System.out.println("3 - Deposit to Joint Account");
 			System.out.println("4 - Logout");
-			
 			option = s.nextInt();
+			System.out.println("");
+			
 			if (option == 1) {
 				curentBalance = BankAccounts.bankDic.get(indexNum).getBalance();
 				int exit = 0;
 				do {
 					System.out.println("Please enter the amount you wish to deposit.");
 					input = s.nextDouble();
+					System.out.println("");
 					
 					if (input > 0){
 						System.out.println("Your input of " + input + " has been deposited.");
 						curentBalance = curentBalance + input;
 						BankAccounts.bankDic.get(indexNum).setBalance(curentBalance);
 						System.out.println("Your current balance is now $" + curentBalance + ".");
+						System.out.println("");
 						exit = 1;
 					}
 					else{
 						System.out.println("This input of " + input + " exceeds current bounds of logic, "
 								+ "please enter a value greater than 0.");
+						System.out.println("");
 					}	
 				} while (exit == 0);
 				
@@ -192,6 +220,7 @@ public class CustomerAccount extends BankAccount {
 				System.out.println(BankAccounts.bankDic.get(indexNum).getSavingsAcc());
 				System.out.println("Please enter the savings account you would like to deposit to.");
 				keyLookUp = s.nextLine();
+				System.out.println("");
 				
 				while(!contains) {
 					contains = BankAccounts.bankDic.get(indexNum).savingsAcc.containsKey(keyLookUp);
@@ -199,11 +228,15 @@ public class CustomerAccount extends BankAccount {
 						System.out.println("Sorry that savings account does not exist.");
 						System.out.println("Please enter another name.");
 						keyLookUp = s.nextLine();
+						System.out.println("");
 						attempts++;
+						
 						if (attempts > 3) {
 							System.out.println("Sorry for the inconvience, but you've reached your"
 									+ " limit on account access attempts.");
 							System.out.println("Please try again later.");
+							System.out.println("");
+							s.close();
 							return;
 						}
 					}
@@ -213,11 +246,13 @@ public class CustomerAccount extends BankAccount {
 								
 				System.out.println("Please enter you deposit amount.");
 				input = s.nextDouble();
+				System.out.println("");
 				
 				int exit = 0;
 				do {
 					System.out.println("Please enter the amount you wish to deposit.");
 					input = s.nextDouble();
+					System.out.println("");
 					
 					if (input > 0){
 						System.out.println("Your input of " + input + " has been deposited.");
@@ -225,11 +260,13 @@ public class CustomerAccount extends BankAccount {
 						BankAccounts.bankDic.get(indexNum).setBalance(curentBalance);
 						System.out.println("Your current balance is now $" + curentBalance + ".");
 						BankAccounts.bankDic.get(indexNum).savingsAcc.put(keyLookUp, curentBalance);
+						System.out.println("");
 						exit = 1;
 					}
 					else{
 						System.out.println("This input of " + input + " exceeds current bounds of logic, "
 								+ "please enter a value greater than 0.");
+						System.out.println("");
 					}	
 				} while (exit == 0);
 				
@@ -239,6 +276,7 @@ public class CustomerAccount extends BankAccount {
 				System.out.println(BankAccounts.bankDic.get(indexNum).getJointAccs());
 				System.out.println("Please enter the joint account you would like to deposit to.");
 				keyLookUp = s.nextLine();
+				System.out.println("");
 				
 				while(!contains) {
 					contains = BankAccounts.usersJointAcc.containsKey(keyLookUp);
@@ -246,11 +284,14 @@ public class CustomerAccount extends BankAccount {
 						System.out.println("Sorry that savings account does not exist.");
 						System.out.println("Please enter another name.");
 						keyLookUp = s.nextLine();
+						System.out.println("");
 						attempts++;
 						if (attempts > 3) {
 							System.out.println("Sorry for the inconvience, but you've reached your"
 									+ " limit on account access attempts.");
 							System.out.println("Please try again later.");
+							System.out.println("");
+							s.close();
 							return;
 						}
 					}
@@ -261,58 +302,28 @@ public class CustomerAccount extends BankAccount {
 				do {
 					System.out.println("Please enter the amount you wish to deposit.");
 					input = s.nextDouble();
+					System.out.println("");
+					
 					if (input > 0){
 						System.out.println("Your input of " + input + " has been deposited.");
 						curentBalance = curentBalance + input;
 						System.out.println("Your current balance is now $" + curentBalance + ".");
 						BankAccounts.usersJointAcc.put(keyLookUp, curentBalance);
+						System.out.println("");
 						exit = 1;
 					}
 					else{
 						System.out.println("This input of " + input + " exceeds current bounds of logic, "
 								+ "please enter a value greater than 0.");
+						System.out.println("");
 					}	
 				} while (exit == 0);
 			} else {
 				System.out.println("That value is invalid please input one of the given options.");
+				System.out.println("");
 			}
 			
 		} while (option != 4);
-		s.close();
-	}
-	
-	@Override
-	public void signIn(String username, String password) {
-		Scanner s = new Scanner(System.in);
-		int userIndex = 0;
-		//choice = s.nextLine();
-		
-		String checkPswd, checkUsername;
-		checkUsername = username;
-		boolean doHaveKey = false;
-		
-		do {
-			doHaveKey = BankAccounts.userToPswd.containsKey(checkUsername);
-			if (doHaveKey) {
-				checkPswd = BankAccounts.userToPswd.get(checkUsername);
-				boolean rightPword = checkPswd.equals(password);
-				do {
-					if (rightPword) {
-						userIndex = BankAccounts.bankIndex.get(checkUsername);
-						viewMenu(userIndex);
-					}
-					else {
-						System.out.println("That password is not in our systems, please enter another one.");
-						password = s.nextLine();
-					}
-				} while(!rightPword);
-			}
-			else {
-				System.out.println("That username is not in our systems, please enter another one.");
-				checkUsername = s.nextLine();
-			}
-		} while(!doHaveKey);
-		
 		s.close();
 	}
 	
@@ -324,9 +335,11 @@ public class CustomerAccount extends BankAccount {
 		do {
 			System.out.println("This name should be unique and creative as to easily find.");
 			newSavAccn = s.nextLine();
+			System.out.println("");
 			if (BankAccounts.bankDic.get(indexNum).savingsAcc.containsKey(newSavAccn)) {
 				System.out.println("Sorry for the inconvience but it seems this account already exsist.");
 				System.out.println("Please try a different name for your savings account.");
+				System.out.println("");
 			}
 			else
 				i = 1;
@@ -337,8 +350,10 @@ public class CustomerAccount extends BankAccount {
 		do {
 			System.out.println("How much money would you like to deposit in you savings account");
 			double initDeposit = s.nextDouble();
+			System.out.println("");
 			if (initDeposit < 0) {
 				System.out.println("Please enter a proper amount.");
+				System.out.println("");
 				a = 0;
 			}
 			else {
@@ -360,6 +375,7 @@ public class CustomerAccount extends BankAccount {
 		do {
 			System.out.println("This name should be unique and creative as to easily find.");
 			newJoiAccn = s.nextLine();
+			System.out.println("");
 			if (BankAccounts.usersJointAcc.containsKey(newJoiAccn)) {
 				System.out.println("Sorry for the inconvience but it seems this account already exsist.");
 				System.out.println("Please try a different name for your joint account.");
@@ -383,26 +399,29 @@ public class CustomerAccount extends BankAccount {
 		do {
 			System.out.println("Please enter the user's username you would like to join.");
 			newJoiAccnHolder = s.nextLine();
+			System.out.println("");
 			exist = BankAccounts.userDic.contains(newJoiAccnHolder);
 			if (exist) {
 				// give the user the newJoiAccn name
 				
 				newJoiHolderIndex = BankAccounts.bankIndex.get(newJoiAccnHolder);
 				BankAccounts.bankDic.get(newJoiHolderIndex).setJointAccs(newJoiAccn);
-				
-				System.out.println("Choose to either continue or add another user.");
-				System.out.println("0 - Add another user.");
-				System.out.println("1 - Continue to depsoit");
-				j = s.nextInt();
-				if (j != 1 || j != 0) {
-					System.out.println("Sorry for the inconvience but it seems this account already exsist.");
-					System.out.println("Please try a different name for your joint account.");
-					j = 0;
-				}
+				do {
+					System.out.println("Choose to either continue or add another user.");
+					System.out.println("0 - Add another user.");
+					System.out.println("1 - Continue to depsoit");
+					j = s.nextInt();
+					System.out.println("");
+					if (j != 1 || j != 0) {
+						System.out.println("Sorry for the inconvience but that's not an option.");
+						System.out.println("");
+					}
+				}while(j != 1 || j != 0);
 				
 			} else {
 				System.out.println("Sorry for the inconvience but this user does not exist.");
 				System.out.println("Please try a different name for your joint account.");
+				System.out.println("");
 			}
 
 		} while(j == 0);
@@ -410,8 +429,10 @@ public class CustomerAccount extends BankAccount {
 		do {
 			System.out.println("How much money would you like to deposit in you savings account");
 			double initDeposit = s.nextDouble();
+			System.out.println("");
 			if (initDeposit < 0) {
 				System.out.println("Please enter a proper amount.");
+				System.out.println("");
 				a = 0;
 			}
 			else {
@@ -424,6 +445,12 @@ public class CustomerAccount extends BankAccount {
 	}
 	
 	@Override
+	public void usersInfo(int indexNum) {
+		BankAccounts.bankDic.get(indexNum).toString();
+		System.out.println("");
+	}
+	
+	@Override
 	public void viewMenu(int indexNum) {
 		Scanner s = new Scanner(System.in);
 		int choice;
@@ -431,7 +458,7 @@ public class CustomerAccount extends BankAccount {
 		if (BankAccounts.bankDic.get(indexNum).isApproved()) {
 			System.out.println("Welcome to Revature Bank!");
 		} else {
-			System.out.println("Sorry for the inconveince, it seems your account isn't approved yet.");
+			System.out.println("Sorry for the inconveince, it seems your account isn't approved.");
 			s.close(); 
 			return;
 		}
@@ -443,8 +470,10 @@ public class CustomerAccount extends BankAccount {
 			System.out.println("3 - Deposit");
 			System.out.println("4 - Create savings account");
 			System.out.println("5 - Create joint account");
-			System.out.println("6 - Log out");
+			System.out.println("6 - Check account information");
+			System.out.println("7 - Log out");
 			choice = s.nextInt();
+			System.out.println("");
 			
 			if (choice == 1) {
 				curentBalance = BankAccounts.bankDic.get(indexNum).getBalance();
@@ -458,10 +487,22 @@ public class CustomerAccount extends BankAccount {
 				savingsAccount(indexNum);
 			else if (choice == 5)
 				jointAccount(indexNum);
+			else if (choice == 6)
+				usersInfo(indexNum);
+			else if (choice == 7)
+				System.out.println("Thank you for choosing RV Bank");
+			else {
+				System.out.println("That's an invalid option.");
+				System.out.println("");
+			}
 		
-		} while (choice != 6);
+		} while (choice != 7);
 		
 		s.close(); 
 	}
 
+	@Override
+	public void approval() {
+		System.out.println("Customer does not have access to this method.");
+	}
 }

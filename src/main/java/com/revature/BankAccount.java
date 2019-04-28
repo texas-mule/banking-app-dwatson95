@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public abstract class BankAccount implements Withdraw, Deposit, Apply, createUserName, SignIn, ViewMenu, Approval {
+public abstract class BankAccount implements Withdraw, Deposit, Apply, createUserName, SignIn, ViewMenu, Approval, UsersInfo {
 	
 	public String accnName;
 	public String accnPswd;
@@ -27,10 +27,6 @@ public abstract class BankAccount implements Withdraw, Deposit, Apply, createUse
 		INDEX++;
 	}
 	
-	@Override
-	public void approval() {
-		
-	}
 	
 	@Override
 	public String toString() {
@@ -99,6 +95,41 @@ public abstract class BankAccount implements Withdraw, Deposit, Apply, createUse
 		return false;
 	}
 
+	@Override
+	public void signIn(String username, String password) {
+		Scanner s = new Scanner(System.in);
+		int userIndex = 0;
+		//choice = s.nextLine();
+		
+		String checkPswd, checkUsername;
+		checkUsername = username;
+		boolean doHaveKey = false;
+		
+		do {
+			doHaveKey = BankAccounts.userToPswd.containsKey(checkUsername);
+			if (doHaveKey) {
+				checkPswd = BankAccounts.userToPswd.get(checkUsername);
+				boolean rightPword = checkPswd.equals(password);
+				do {
+					if (rightPword) {
+						userIndex = BankAccounts.bankIndex.get(checkUsername);
+						viewMenu(userIndex);
+					}
+					else {
+						System.out.println("That password is not in our systems, please enter another one.");
+						password = s.nextLine();
+					}
+				} while(!rightPword);
+			}
+			else {
+				System.out.println("That username is not in our systems, please enter another one.");
+				checkUsername = s.nextLine();
+			}
+		} while(!doHaveKey);
+		
+		s.close();
+	}
+	
 	
 	public List<String> getJointAccs() {
 		return jointAccs;

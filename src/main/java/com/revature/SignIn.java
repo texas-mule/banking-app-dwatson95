@@ -2,6 +2,6 @@ package com.revature;
 
 public interface SignIn {
 
-	int signIn(String username, String password);
+	void signIn(String username, String password);
 
 }

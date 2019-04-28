@@ -2,6 +2,6 @@ package com.revature;
 
 public interface Withdraw {
 
-	void withdraw();
+	void withdraw(int indexNum);
 
 }

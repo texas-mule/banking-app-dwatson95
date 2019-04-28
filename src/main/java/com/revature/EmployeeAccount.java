@@ -11,27 +11,15 @@ public class EmployeeAccount extends BankAccount {
 	}
 
 	@Override
-	public void withdraw() {
+	public void withdraw(int indexNum) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deposit() {
+	public void deposit(int indexNum) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void apply() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean createUserName(String username) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
@@ -41,11 +29,10 @@ public class EmployeeAccount extends BankAccount {
 	}
 
 	@Override
-	public void viewMenu() {
+	public void viewMenu(int indexNum) {
 		// TODO Auto-generated method stub
 		
 	}
-	
 	
 	
 

@@ -1,8 +1,12 @@
 package com.revature;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
 
-public abstract class BankAccount implements Withdraw, Deposit, Apply, createUserName, SignIn, ViewMenu {
+public abstract class BankAccount implements Withdraw, Deposit, Apply, createUserName, SignIn, ViewMenu, Approval {
 	
 	public String accnName;
 	public String accnPswd;
@@ -12,22 +16,112 @@ public abstract class BankAccount implements Withdraw, Deposit, Apply, createUse
 	public boolean approved = false;
 	public int userID;
 	public Hashtable<String, Double> savingsAcc = new Hashtable<String, Double>();
-	public Hashtable<String, Double> jointAcc = new Hashtable<String, Double>();
+	public List<String> jointAccs = new ArrayList<String>();
+
 	public int userINDEX;
 	public static int INDEX = 0;	
 
-	//public List<String> pswdDic = new ArrayList<String>();
-	
-	
 	public BankAccount(){
 		super();
-//		try (FileWriter fw = new FileWriter("output.txt", true)){
-//			fw.append(accnName + accnPswd + balance + firstN + lastN + approved);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 		userINDEX = INDEX;
 		INDEX++;
+	}
+	
+	@Override
+	public void approval() {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "BankAccount [accnName=" + accnName + ", accnPswd=" + accnPswd + ", balance=" + balance 
+				+ ", firstN=" + firstN + ", lastN=" + lastN + ", approved=" + approved 
+				+ ", userID=" + userID + ", savingsAcc=" + savingsAcc + ", joingAccs=" + jointAccs + 
+				", userINDEX=" + userINDEX + "]";
+	}
+	
+	public void apply() {
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("Please enter your first name.");
+		String first = s.nextLine();
+		setFirstN(first);
+		
+		System.out.println("Please enter your last name!");
+		String last = s.nextLine();
+		setLastN(last);
+		
+		System.out.println("You can change these once your account has been approved if needed.");
+		String username;
+		boolean userNameFree = true;
+		while(userNameFree) {
+			System.out.println("Please enter a username!");
+			username = s.nextLine();
+			userNameFree = createUserName(username);
+			setAccnName(username);
+		}
+		
+		int choice;
+		String password;
+		do {
+			// loop if No is selected
+			// also if the incorrect option is chosen
+			System.out.println("Please enter a password!");
+			password = s.nextLine();
+			System.out.println("Are you sure you want, " + password + "to be your password?");
+			System.out.println("1 - Yes");
+			System.out.println("2 - No");
+			choice = s.nextInt();
+			if (choice == 1)
+				setAccnPswd(password);
+		} while (choice != 1);
+		
+		System.out.println("Your checkings account has been created!");
+		System.out.println("You will need to wait for our systems to proccess your account.");
+		System.out.println("Until then you'll have to wait to access our banking system, "
+				+ "so please return later.");
+		System.out.println("Thank you for choosing Revature Bank and have a wonderful day.");
+		BankAccounts.userToPswd.put(getAccnName(), getAccnPswd());
+		BankAccounts.bankIndex.put(getAccnName(), getUserINDEX());
+		s.close();
+		
+	}
+	
+	@Override
+	public boolean createUserName(String username) {
+		for (int i = 0; i < BankAccounts.userDic.size(); i++) {
+			if(Objects.equals(username, BankAccounts.userDic.get(i))) {
+				System.out.println("This username already exists!");
+				return true;
+			}
+		}
+		BankAccounts.userDic.add(username);
+		return false;
+	}
+
+	
+	public List<String> getJointAccs() {
+		return jointAccs;
+	}
+
+	public void setJointAccs(String newJoiAccn) {
+		this.jointAccs.add(newJoiAccn);
+	}
+	
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+	
+	public boolean isApproved() {
+		return approved;
+	}
+
+	public void setApproved(boolean approved) {
+		this.approved = approved;
 	}
 	
 	public Hashtable<String, Double> getSavingsAcc() {
@@ -38,11 +132,11 @@ public abstract class BankAccount implements Withdraw, Deposit, Apply, createUse
 		this.savingsAcc = savingsAcc;
 	}
 
-	public void savingsAccount() {
+	public void savingsAccount(int indexNum) {
 		
 	}
 	
-	public void jointAccount() {
+	public void jointAccount(int indexNum) {
 		
 	}
 	
@@ -91,11 +185,6 @@ public abstract class BankAccount implements Withdraw, Deposit, Apply, createUse
 	public int getUserINDEX() {
 		return userINDEX;
 	}
-	
-//	public void setBankDic() {
-//	bankDic.add(new BankAccount(accnName, accnPswd, balance));
-//	this.bankDic.add(BankAccount());
-//}
 		
 }
 

@@ -9,6 +9,8 @@ public class Bank {
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 		int option;
+		BankAccount mainAdmin = new BankAdminAccount();
+		mainAdmin.setApproved(true);
 		
 		do {
 			System.out.println("Welcome to RV Bank.");
@@ -71,6 +73,7 @@ public class Bank {
 				custSU();
 
 		} while (option != 3);
+		s.close();
 	}
 	
 	public static void loginPortal() {
@@ -87,21 +90,23 @@ public class Bank {
 	
 			option = s.nextInt();
 			
-			if (option != 1 || option != 2)
+			if (option == 1 ){
+				System.out.println("Please enter your account username.");
+				String username = s.next();
+			
+				System.out.println("Please enter your account password.");
+				String password = s.nextLine();
+				System.out.println("Thank you.");
+				
+				person.signIn(username, password);
+			}	
+			else {
 				System.out.println("That option is invalid.");
-			else if (option == 2)
-				return;
+			}
 
-		} while (option != 1);
+		} while (option != 2);
 					
-		System.out.println("Please enter your account username.");
-		String username = s.next();
-	
-		System.out.println("Please enter your account password.");
-		String password = s.nextLine();
-		System.out.println("Thank you.");
 		
-		person.signIn(username, password);
 		s.close();
 	}
 	

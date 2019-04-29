@@ -11,7 +11,7 @@ public class BankAccounts {
 	//list of all bank accounts objects
 	public static List<BankAccount> bankDic = new ArrayList<BankAccount>();  //need to see if better way
 		
-	public static HashMap<String, String> userJoiDic = new HashMap<String, String>(); //same as 9
+	public static List<String> userJoiDic = new ArrayList<String>();
 	//hashmap containing key username and value password
 	public static HashMap<String, String> userToPswd = new HashMap<String, String>();
 	//hashmap containing key of username and value of index number to bankDic

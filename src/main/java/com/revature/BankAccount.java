@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public abstract class BankAccount implements Withdraw, Deposit, Apply, createUserName, SignIn, ViewMenu, Approval, UsersInfo {
+public abstract class BankAccount implements Withdraw, Deposit, Apply, createUserName, SignIn, ViewMenu, Approval, UsersInfo, Transfer {
 	
 	public String accnName;
 	public String accnPswd;
@@ -17,6 +17,8 @@ public abstract class BankAccount implements Withdraw, Deposit, Apply, createUse
 	public int userID;
 	public Hashtable<String, Double> savingsAcc = new Hashtable<String, Double>();
 	public List<String> jointAccs = new ArrayList<String>();
+	public boolean cancelled = false;
+	
 
 	public int userINDEX;
 	public static int INDEX = 0;	
@@ -130,6 +132,14 @@ public abstract class BankAccount implements Withdraw, Deposit, Apply, createUse
 		s.close();
 	}
 	
+	
+	public boolean isCancelled() {
+		return cancelled;
+	}
+
+	public void setCancelled(boolean cancelled) {
+		this.cancelled = cancelled;
+	}
 	
 	public List<String> getJointAccs() {
 		return jointAccs;

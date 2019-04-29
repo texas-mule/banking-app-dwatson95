@@ -54,7 +54,7 @@ public class EmployeeAccount extends BankAccount {
 					
 				}while (i == 0);
 			} else if (choice == 2)
-				System.out.println("Thank you you'll returned to the employee menu.");
+				System.out.println("Thank you, you'll returned to the employee menu now.");
 			else 
 				System.out.println("That's an invalid choice.");
 			
@@ -134,8 +134,8 @@ public class EmployeeAccount extends BankAccount {
 		
 		do {
 			System.out.println("Please choose from one of the options");
-			System.out.println("1 - Check current users information.");
-			System.out.println("2 - Approve a user");
+			System.out.println("1 - Check Current Accounts Information.");
+			System.out.println("2 - Approve Users Accounts");
 			System.out.println("3 - Log out");
 			choice = s.nextInt();
 			System.out.println("");
@@ -164,6 +164,10 @@ public class EmployeeAccount extends BankAccount {
 
 	@Override
 	public void deposit(int indexNum) {
+		System.out.println("Employee does not have access to this method.");
+	}
+	
+	public void transfer(int indexNum) {
 		System.out.println("Employee does not have access to this method.");
 	}
 

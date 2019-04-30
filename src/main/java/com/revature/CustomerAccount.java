@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class CustomerAccount extends BankAccount {
 
+	Scanner s = new Scanner(System.in);
+	
 	public CustomerAccount() {
 		super();
 		this.userID = 0;
@@ -11,7 +13,6 @@ public class CustomerAccount extends BankAccount {
 	
 	public void withdraw(int indexNum) {
 		double input;
-		Scanner s = new Scanner(System.in);
 		double curentBalance;
 		int option;
 		String keyLookUp;
@@ -78,7 +79,7 @@ public class CustomerAccount extends BankAccount {
 									+ " limit on account access atempts.");
 							System.out.println("Please try again later.");
 							System.out.println("");
-							s.close();
+							////s.close();
 							return;
 						}
 					}
@@ -133,7 +134,7 @@ public class CustomerAccount extends BankAccount {
 									+ " limit on account access attempts.");
 							System.out.println("Please try again later.");
 							System.out.println("");
-							s.close();
+							////s.close();
 							return;
 						}
 					}
@@ -171,11 +172,10 @@ public class CustomerAccount extends BankAccount {
 			}
 			
 		} while (option != 4);
-		s.close();
+		////s.close();
 	}
 	
 	public void deposit(int indexNum) {
-		Scanner s = new Scanner(System.in);
 		double curentBalance;
 		double input;
 		int attempts = 0;
@@ -238,7 +238,7 @@ public class CustomerAccount extends BankAccount {
 									+ " limit on account access attempts.");
 							System.out.println("Please try again later.");
 							System.out.println("");
-							s.close();
+							////s.close();
 							return;
 						}
 					}
@@ -293,7 +293,7 @@ public class CustomerAccount extends BankAccount {
 									+ " limit on account access attempts.");
 							System.out.println("Please try again later.");
 							System.out.println("");
-							s.close();
+							////s.close();
 							return;
 						}
 					}
@@ -326,11 +326,10 @@ public class CustomerAccount extends BankAccount {
 			}
 			
 		} while (option != 4);
-		s.close();
+		////s.close();
 	}
 	
 	public void transfer(int indexNum) {
-		Scanner s = new Scanner(System.in);
 		double input;
 		int attempts = 0;
 		int option, choice;
@@ -372,7 +371,7 @@ public class CustomerAccount extends BankAccount {
 										+ " limit on account access attempts.");
 								System.out.println("Please try again later.");
 								System.out.println("");
-								s.close();
+								////s.close();
 								return;
 							}
 						}
@@ -484,7 +483,7 @@ public class CustomerAccount extends BankAccount {
 										+ " limit on account access attempts.");
 								System.out.println("Please try again later.");
 								System.out.println("");
-								s.close();
+								////s.close();
 								return;
 							}
 						}
@@ -597,7 +596,7 @@ public class CustomerAccount extends BankAccount {
 										+ " limit on account access attempts.");
 								System.out.println("Please try again later.");
 								System.out.println("");
-								s.close();
+								////s.close();
 								return;
 							}
 						}
@@ -620,7 +619,7 @@ public class CustomerAccount extends BankAccount {
 												+ " limit on account access attempts.");
 										System.out.println("Please try again later.");
 										System.out.println("");
-										s.close();
+										////s.close();
 										return;
 									}
 								}
@@ -696,7 +695,7 @@ public class CustomerAccount extends BankAccount {
 										+ " limit on account access attempts.");
 								System.out.println("Please try again later.");
 								System.out.println("");
-								s.close();
+								////s.close();
 								return;
 							}
 						}
@@ -720,7 +719,7 @@ public class CustomerAccount extends BankAccount {
 												+ " limit on account access attempts.");
 										System.out.println("Please try again later.");
 										System.out.println("");
-										s.close();
+										////s.close();
 										return;
 									}
 								} else {
@@ -834,7 +833,7 @@ public class CustomerAccount extends BankAccount {
 										+ " limit on account access attempts.");
 								System.out.println("Please try again later.");
 								System.out.println("");
-								s.close();
+								////s.close();
 								return;
 							}
 						}
@@ -857,7 +856,7 @@ public class CustomerAccount extends BankAccount {
 												+ " limit on account access attempts.");
 										System.out.println("Please try again later.");
 										System.out.println("");
-										s.close();
+										////s.close();
 										return;
 									}
 								}
@@ -918,11 +917,10 @@ public class CustomerAccount extends BankAccount {
 			}
 			
 		} while (option != 6);
-		s.close();
+		////s.close();
 	}
 	
 	public void savingsAccount(int indexNum) {
-		Scanner s = new Scanner(System.in);
 		System.out.println("To create an savings account, please input an account name.");
 		String newSavAccn;
 		int i = 0;
@@ -960,12 +958,10 @@ public class CustomerAccount extends BankAccount {
 			}
 		} while(a != 0);
 		
-		s.close();
+		////s.close();
 	}
 	
 	public void jointAccount(int indexNum) {
-		
-		Scanner s = new Scanner(System.in);
 		System.out.println("To create an joint account, please input an account name.");
 		String newJoiAccn;
 		int i = 0;
@@ -1041,25 +1037,27 @@ public class CustomerAccount extends BankAccount {
 			}
 		} while(a != 0);
 		
-		s.close();
+		////s.close();
 	}
 	
 	@Override
 	public void usersInfo(int indexNum) {
-		BankAccounts.bankDic.get(indexNum).toString();
-		System.out.println("");
+		
+		System.out.println(BankAccounts.bankDic.get(indexNum).toString());
 	}
 	
 	@Override
 	public void viewMenu(int indexNum) {
-		Scanner s = new Scanner(System.in);
+		
 		int choice;
 		double curentBalance;
-		if (BankAccounts.bankDic.get(indexNum).isApproved()) {
+		boolean approvedOrNot = BankAccounts.bankDic.get(indexNum).isApproved();
+		
+		if (approvedOrNot == true) {
 			System.out.println("Welcome to Revature Bank!");
 		} else {
 			System.out.println("Sorry for the inconveince, it seems your account isn't approved.");
-			s.close(); 
+			//s.close(); 
 			return;
 		}
 		
@@ -1072,7 +1070,7 @@ public class CustomerAccount extends BankAccount {
 			System.out.println("5 - Create joint account");
 			System.out.println("6 - Check account information");
 			System.out.println("7 - Transfer Funds");
-			System.out.println("7 - Log out");
+			System.out.println("8 - Log out");
 			choice = s.nextInt();
 			System.out.println("");
 			
@@ -1101,9 +1099,96 @@ public class CustomerAccount extends BankAccount {
 		
 		} while (choice != 8);
 		
-		s.close(); 
+		//s.close(); 
 	}
 
+	public void apply() {
+		
+		System.out.println("Please enter your first name.");
+		String first = s.nextLine();
+		setFirstN(first);
+		
+		System.out.println("Please enter your last name!");
+		String last = s.nextLine();
+		setLastN(last);
+		
+		String username;
+		boolean userNameFree = true;
+		while(userNameFree) {
+			System.out.println("Please enter a username!");
+			username = s.nextLine();
+			userNameFree = createUserName(username);
+			if(userNameFree == true) {
+				BankAccounts.customerDic.add(username);
+				setAccnName(username);
+			}
+		}
+		
+		int choice = 0;
+		String password;
+		do {
+			// loop if No is selected
+			// also if the incorrect option is chosen
+			System.out.println("Please enter a password!");
+			password = s.nextLine();
+			System.out.println("Are you sure you want, " + password + " to be your password?");
+			System.out.println("1 - Yes");
+			System.out.println("2 - No");
+			
+			choice = Integer.parseInt(s.nextLine());
+			
+			if (choice == 1) 
+				setAccnPswd(password);
+		} while (choice != 1);
+		System.out.println("");
+		System.out.println("Your checkings account has been created!");
+		System.out.println("You will need to wait for our systems to proccess your account.");
+		System.out.println("Until then you'll have to wait to access our banking system, "
+				+ "so please return later.");
+		System.out.println("Thank you for choosing Revature Bank and have a wonderful day.");
+		BankAccounts.userToPswd.put(getAccnName(), getAccnPswd());
+		BankAccounts.bankIndex.put(getAccnName(), getUserINDEX());
+		////s.close();
+	}
+	
+	@Override
+	public void signIn(String username, String password) {
+		int userIndex = 0;
+		//choice = s.nextLine();
+		
+		String checkPswd, checkUsername;
+		checkUsername = username;
+		boolean doHaveKey = false;
+		do {
+			doHaveKey = BankAccounts.customerDic.contains(checkUsername);
+			if (doHaveKey == true) {
+				checkPswd = BankAccounts.userToPswd.get(checkUsername);
+				boolean rightPword = checkPswd.equals(password);
+				do {
+					if (rightPword) {
+						userIndex = BankAccounts.bankIndex.get(checkUsername);
+						viewMenu(userIndex);
+					}
+					else {
+						System.out.println("That password is not in our systems, please enter another one.");
+						password = s.nextLine();
+					}
+				} while(!rightPword);
+			}
+			else {
+				System.out.println("That username is not in our systems, please enter another one.");
+				System.out.println("If you wish not to login enter 'exit' to leave.");
+				checkUsername = s.nextLine();
+				if (checkUsername.equals("exit")) {
+					System.out.println("Thank you, you'll return to the login page now.");
+					return;
+				}
+			}
+		} while(!doHaveKey);
+		
+		//s.close();
+	}
+	
 	@Override
 	public void approval() {
 		System.out.println("Customer does not have access to this method.");

@@ -10,7 +10,13 @@ public class BankAccounts {
 	public static List<String> userDic = new ArrayList<String>();
 	//list of all bank accounts objects
 	public static List<BankAccount> bankDic = new ArrayList<BankAccount>();  //need to see if better way
-		
+	//list of all customers
+	public static List<String> customerDic = new ArrayList<String>();
+	//list of all employees
+	public static List<String> employeeDic = new ArrayList<String>();
+	//list of all admins
+	public static List<String> adminDic = new ArrayList<String>();
+	
 	public static List<String> userJoiDic = new ArrayList<String>();
 	//hashmap containing key username and value password
 	public static HashMap<String, String> userToPswd = new HashMap<String, String>();
